@@ -13,3 +13,5 @@ This repo is a fork of the original [RanvierMUD], but now in Typescript (or at l
 
 To use this, clone the repo, `npm install`, and then use `npm link <path to your locally forked repo of core-ts>`.
 To start, `npm start`.
+
+**note: Generally, after anytime you use 'npm install', you will need to re-link the core-ts repo.**
