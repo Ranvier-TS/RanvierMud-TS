@@ -7,7 +7,7 @@
 Ranvier is a [MUD](https://en.wikipedia.org/wiki/MUD) game engine whose goal is to be a simple but powerful way to build whatever MUD you want with special care given to extensibility. The core code strives to be completely unopinionated toward any specific style of game while using the bundle system to build the game you want without having to dig through the engine's code.
 
 
-## This Repo
+## This Repo (fork)
 
 This repo is a fork of the original [RanvierMUD], but now in Typescript (or at least can be). It is a work in progress, and is not yet full ready for use. It contains all of the original example-bundle code as well as link to the core-ts Ranvier repo. The core-ts repo is fully in typescript.
 
