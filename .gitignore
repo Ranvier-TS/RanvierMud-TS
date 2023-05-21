@@ -14,6 +14,8 @@ gulpTODO.md
 .ranvierSecret
 log/*.log
 !log/.gitkeep
+/dist
+ranvier.js
 
 # ignore mkdocs build target
 site/

@@ -1,33 +1,37 @@
 {
-  "name": "ranviermud",
-  "version": "2.0.0",
+  "name": "ranviermudts",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/shawncplus/ranviermud.git"
+    "url": "git://github.com/Ranvier-TS/RanvierMud-TS.git"
   },
   "engines": {
-    "node": ">= 10.12.0"
+    "node": ">= 18.0.0"
   },
   "license": "MIT",
   "scripts": {
-    "start": "node ./ranvier -v",
+    "start": "ts-node ./ranvier",
+    "build": "tsc",
     "init": "node ./util/init-bundles.js",
     "update-bundle-remote": "node ./util/update-bundle-url.js",
     "remove-bundle": "node ./util/remove-bundle.js",
     "install-bundle": "node ./util/install-bundle.js"
   },
   "dependencies": {
-    "commander": "^2.19.0",
+    "commander": "10.0.1",
     "optimist": "",
-    "ranvier": "^3.0.5",
+    "ranvier": "github:Ranvier-TS/core-ts",
     "ranvier-datasource-file": "^1.0.3",
     "semver": "^5.6.0",
     "sprintf-js": "^1.0.3",
     "sty": "",
+    "ts-node": "^10.9.1",
     "uuid": "^3.3.2",
     "winston": "^2.4.4"
   },
   "devDependencies": {
-    "git-url-parse": "^11.1.2"
+    "@types/node": "^20.2.1",
+    "git-url-parse": "^11.1.2",
+    "typescript": "^5.0.4"
   }
 }

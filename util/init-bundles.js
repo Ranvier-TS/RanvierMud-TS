@@ -52,6 +52,7 @@ async function main() {
     'https://github.com/RanvierMUD/player-groups',
     'https://github.com/RanvierMUD/progressive-respawn',
     'https://github.com/RanvierMUD/telnet-networking',
+    // 'https://github.com/RanvierMUD/ranvier-telnet',
     'https://github.com/RanvierMUD/websocket-networking',
   ];
   const enabledBundles = [];

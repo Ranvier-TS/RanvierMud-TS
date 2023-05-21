@@ -10,7 +10,6 @@
  *   --port Port to listen on
  */
 
-
 /* NPM Modules */
 const semver = require('semver');
 const net = require('net');
@@ -21,7 +20,7 @@ const fs = require('fs');
 // for dev clone the github:ranviermud/core repo, and run npm link in that folder, then come
 // back to the ranviermud repo and run npm link ranvier
 const Ranvier = require('ranvier');
-const Config = Ranvier.Config;
+const Config: any = Ranvier.Config;
 
 // Package.json for versioning
 const pkg = require('./package.json');
@@ -47,9 +46,17 @@ if (fs.existsSync('./ranvier.conf.js')) {
 // cmdline options
 commander
   .version(pkg.version)
-  .option('-p, --port [portNumber]', 'Port to host the server [23]', Ranvier.Config.get('port', 23))
+  .option(
+    '-p, --port [portNumber]',
+    'Port to host the server [23]',
+    Ranvier.Config.get('port', 23)
+  )
   .option('-v, --verbose', 'Verbose console logging.', true)
-  .option('-e, --prettyErrors', 'Pretty-print formatting for error stack traces.', false)
+  .option(
+    '-e, --prettyErrors',
+    'Pretty-print formatting for error stack traces.',
+    false
+  )
   .parse(process.argv);
 
 // Set debug variable and encoding.
@@ -68,21 +75,20 @@ if (commander.prettyErrors) {
 }
 
 // Set logging level based on CLI option or environment variable.
-const logLevel = commander.verbose ?
-  'verbose' :
-  process.env.LOG_LEVEL || Config.get('logLevel') || 'debug';
+const logLevel = commander.verbose
+  ? 'verbose'
+  : process.env.LOG_LEVEL || Config.get('logLevel') || 'debug';
 Logger.setLevel(logLevel);
 
-
 // Global state object, server instance and configurable intervals.
-let GameState = {};
+let GameState: any = {};
 let saveInterval, tickInterval, playerTickInterval;
 
 /**
  * Do the dirty work
  */
-async function init(restartServer) {
-  Logger.log("START - Loading entities");
+async function init(restartServer?: boolean) {
+  Logger.log('START - Loading entities');
   restartServer = typeof restartServer === 'undefined' ? true : restartServer;
 
   GameState = {
@@ -118,24 +124,37 @@ async function init(restartServer) {
     DataLoader: Ranvier.Data,
     EntityLoaderRegistry: new Ranvier.EntityLoaderRegistry(),
     DataSourceRegistry: new Ranvier.DataSourceRegistry(),
-    Config,
   };
 
   // setup entity loaders
-  GameState.DataSourceRegistry.load(require, __dirname, Config.get('dataSources'));
-  GameState.EntityLoaderRegistry.load(GameState.DataSourceRegistry, Config.get('entityLoaders'));
+  GameState.DataSourceRegistry.load(
+    require,
+    __dirname,
+    Config.get('dataSources')
+  );
+  GameState.EntityLoaderRegistry.load(
+    GameState.DataSourceRegistry,
+    Config.get('entityLoaders')
+  );
 
-  GameState.AccountManager.setLoader(GameState.EntityLoaderRegistry.get('accounts'));
-  GameState.PlayerManager.setLoader(GameState.EntityLoaderRegistry.get('players'));
+  GameState.AccountManager.setLoader(
+    GameState.EntityLoaderRegistry.get('accounts')
+  );
+  GameState.PlayerManager.setLoader(
+    GameState.EntityLoaderRegistry.get('players')
+  );
 
   // Setup bundlemanager
-  const BundleManager = new Ranvier.BundleManager(__dirname + '/bundles/', GameState);
+  const BundleManager = new Ranvier.BundleManager(
+    __dirname + '/bundles/',
+    GameState
+  );
   GameState.BundleManager = BundleManager;
   await BundleManager.loadBundles();
   GameState.ServerEventManager.attach(GameState.GameServer);
 
   if (restartServer) {
-    Logger.log("START - Starting server");
+    Logger.log('START - Starting server');
     GameState.GameServer.startup(commander);
 
     // Ticks for effect processing and combat happen every 100ms
