@@ -10,24 +10,25 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "ts-node ./ranvier",
-    "build": "tsc",
-    "init": "node ./util/init-bundles.js",
-    "update-bundle-remote": "node ./util/update-bundle-url.js",
-    "remove-bundle": "node ./util/remove-bundle.js",
-    "install-bundle": "node ./util/install-bundle.js"
+    "start": "ts-node ./ranvier.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "commander": "10.0.1",
+    "humanize": "0.0.9",
+    "humanize-duration": "^3.24.0",
     "optimist": "",
-    "ranvier": "github:Ranvier-TS/core-ts",
+    "rando-js": "^0.2.0",
+    "ranvier": "git+https://github.com/Ranvier-TS/core-ts.git#ranviermud",
     "ranvier-datasource-file": "^1.0.3",
+    "ranvier-telnet": "^1.0.3",
     "semver": "^5.6.0",
-    "sprintf-js": "^1.0.3",
+    "sprintf-js": "^1.1.2",
     "sty": "",
     "ts-node": "^10.9.1",
     "uuid": "^3.3.2",
-    "winston": "^2.4.4"
+    "winston": "^2.4.4",
+    "ws": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "^20.2.1",
